@@ -122,12 +122,6 @@
                 <artifactId>wechatpay-apache-httpclient</artifactId>
                 <version>0.4.8</version>
             </dependency>
-            <!-- Knife4j 接口文档增强版（替代 Swagger UI） -->
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-spring-boot-starter</artifactId>
-                <version>3.0.3</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
