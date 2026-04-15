@@ -22,4 +22,7 @@ public interface EmployeeMapper {
     void insert(Employee employee);
     // 查询所有员工（支持分页）
     Page<Employee> pageQuery(EmployeePageQueryDTO pageQueryDTO);
+    void update(Employee employee);
+    @Select("select * from employee where id = #{id}")
+    Employee selectById(Long id);
 }
