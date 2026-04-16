@@ -1,3 +1,4 @@
+# noinspection YAMLSchemaValidation
 server:
   port: 8080
 
@@ -36,3 +37,13 @@ sky:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+# MinIO 配置（核心！）
+  minio:
+  # MinIO 服务地址（你本地启动的）
+    endpoint: ${sky.minio.minio.endpoint}
+  # 账号
+    access-key-id : ${sky.minio.access-key-id}
+  # 密码
+    access-key-secret: ${sky.minio.access-key-secret}
+  # 默认桶名称（可以自己改）
+    bucket-name: ${sky.minio.bucket-name}

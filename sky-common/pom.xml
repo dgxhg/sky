@@ -49,5 +49,11 @@
             <groupId>com.github.wechatpay-apiv3</groupId>
             <artifactId>wechatpay-apache-httpclient</artifactId>
         </dependency>
+        <!-- MinIO Java SDK 最新兼容版 -->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.11</version>
+        </dependency>
     </dependencies>
 </project>

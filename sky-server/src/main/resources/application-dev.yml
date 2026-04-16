@@ -6,3 +6,12 @@ sky:
     database: sky_take_out
     username: root
     password: 123456
+  minio:
+      # MinIO 服务地址（你本地启动的）
+      endpoint: http://127.0.0.1:9000
+      # 账号
+      access-key-id: minioadmin
+      # 密码
+      access-key-secret: minioadmin
+      # 默认桶名称（可以自己改）
+      bucket-name: sky-picture
