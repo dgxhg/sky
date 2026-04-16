@@ -24,4 +24,8 @@ public interface DishMapper {
     void insert(Dish dish);
 
     Page<Dish> dishPageQuery(DishPageQueryDTO dishPageQueryDTO);
+    void deleteBatch(List<Long> ids);
+
+    @Select("select status from dish where id = #{id}")
+    Integer getById(Long id);
 }

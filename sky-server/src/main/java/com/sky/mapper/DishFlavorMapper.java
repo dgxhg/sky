@@ -19,4 +19,6 @@ public interface DishFlavorMapper {
      */
     @AutoFill(OperationType.INSERT)
     void insertBatch(List<DishFlavor> flavors);
+
+    void deleteByDishId(List<Long> ids);
 }

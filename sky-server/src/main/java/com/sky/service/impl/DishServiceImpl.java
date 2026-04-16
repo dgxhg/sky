@@ -2,12 +2,16 @@ package com.sky.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sky.constant.MessageConstant;
+import com.sky.constant.StatusConstant;
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
+import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
+import com.sky.mapper.SetmealDishMapper;
 import com.sky.result.PageResult;
 import com.sky.service.DishService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +34,8 @@ public class DishServiceImpl implements DishService {
     DishMapper dishMapper;
     @Autowired
     private DishFlavorMapper dishFlavorMapper;
-
+    @Autowired
+    SetmealDishMapper setmealDishMapper;
     @Override
     @Transactional
     public void saveWithFlavor(DishDTO dishDTO) {
@@ -56,5 +61,21 @@ public class DishServiceImpl implements DishService {
         PageHelper.startPage(dishPageQueryDTO.getPage(), dishPageQueryDTO.getPageSize());
         Page<Dish> page = dishMapper.dishPageQuery(dishPageQueryDTO);
         return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    @Override
+    public void deleteBatch(List<Long> ids) {
+        if(ids != null && ids.size() > 0) {
+            for(Long id : ids) {
+                Integer status = dishMapper.getById(id);
+                if(status == StatusConstant.ENABLE) throw new DeletionNotAllowedException(MessageConstant.DISH_ON_SALE);
+            }
+            List<Long> setmealIdByDishIds = setmealDishMapper.getSetmealIdByDishIds(ids);
+            if(setmealIdByDishIds.size() > 0) {
+                throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
+            }
+            dishMapper.deleteBatch(ids);
+            dishFlavorMapper.deleteByDishId(ids);
+        }
     }
 }
