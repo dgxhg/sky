@@ -8,10 +8,10 @@
         INSERT INTO dish_flavor (dish_id, name, value)
         VALUES
         <foreach collection="flavors" item="flavor" separator=",">
-            (#{flavors.dishId}, #{flavor.name}, #{flavor.value})
+            (#{flavor.dishId}, #{flavor.name}, #{flavor.value})
         </foreach>
     </insert>
-    <delete id="deleteByDishId">
+    <delete id="deleteByDishIds">
         delete from dish_flavor
         <where>
             dish_id in

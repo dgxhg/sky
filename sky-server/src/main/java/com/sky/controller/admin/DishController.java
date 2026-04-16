@@ -26,8 +26,6 @@ public class DishController {
     public Result save(@RequestBody DishDTO dishDTO) {
             log.info("新增菜品接口：{}",dishDTO);
             dishService.saveWithFlavor(dishDTO);
-
-
         return Result.success();
     }
     @GetMapping("/page")
@@ -41,6 +39,19 @@ public class DishController {
     @Transactional
     public Result deleteBatch(@RequestParam List<Long> ids) {
         dishService.deleteBatch(ids);
+        return Result.success();
+    }
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询菜品")
+    public Result<DishDTO> getById(@PathVariable Long id) {
+        DishDTO dishDTO = dishService.getById(id);
+        return Result.success(dishDTO);
+    }
+    @PutMapping
+    @ApiOperation("修改菜品")
+    @Transactional
+    public Result update(@RequestBody DishDTO dishDTO) {
+        dishService.update(dishDTO);
         return Result.success();
     }
 }
