@@ -41,7 +41,10 @@ sky:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
-# MinIO 配置（核心！）
+    user-secret-key: dgxhg
+    user-ttl: 7200000
+    user-token-name: authentitcast
+  # MinIO 配置（核心！）
   minio:
   # MinIO 服务地址（你本地启动的）
     endpoint: ${sky.minio.minio.endpoint}
@@ -51,3 +54,6 @@ sky:
     access-key-secret: ${sky.minio.access-key-secret}
   # 默认桶名称（可以自己改）
     bucket-name: ${sky.minio.bucket-name}
+  wechat:
+    appid: ${sky.wechat.appid}
+    secret: ${sky.wechat.secret}

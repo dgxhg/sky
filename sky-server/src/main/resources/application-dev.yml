@@ -15,6 +15,9 @@ sky:
       access-key-secret: minioadmin
       # 默认桶名称（可以自己改）
       bucket-name: sky-picture
+  wechat:
+    appid: wxfb4b925b2159168b
+    secret: 2a4a604842ce57825c7ebfa652a6a83b
   redis:
     host: localhost
     port: 6379
