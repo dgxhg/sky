@@ -47,4 +47,25 @@
         </set>
         where id = #{id}
     </update>
+
+    <select id="list" parameterType="com.sky.entity.Dish" resultType="com.sky.entity.Dish">
+        select * from dish
+        <where>
+            <!-- 按分类id查询 -->
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+
+            <!-- 按菜品名称模糊查询 -->
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+
+            <!-- 按状态查询（起售/停售） -->
+            <if test="status != null">
+                and status = #{status}
+            </if>
+
+        </where>
+    </select>
 </mapper>

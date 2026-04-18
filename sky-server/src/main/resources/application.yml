@@ -43,7 +43,7 @@ sky:
     admin-token-name: token
     user-secret-key: dgxhg
     user-ttl: 7200000
-    user-token-name: authentitcast
+    user-token-name: authentication
   # MinIO 配置（核心！）
   minio:
   # MinIO 服务地址（你本地启动的）
